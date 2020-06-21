@@ -1,0 +1,27 @@
+<%- include("partials/header") %> 
+<div class="container-fluid">
+<h1>Intersting Blogs...</h1>
+
+<% blogs.forEach(blog => { %>
+    <div class="post">
+        <p class="time"><%= blog.day %> </p>
+        <h3><%= blog.title %> </h3>
+        <p><%= truncate(blog.content) %>
+           <% if(truncate(blog.content).length > 1000){ %> 
+            <a href="/<%= blog._id %>">Read more</a>
+            <% } %>
+        </p> 
+            <img src=<%= blog.image %> class="rounded mx-auto d-block " alt="img">
+    </div>
+<% }); %> 
+</div>
+
+<%- include("partials/footer") %> 
+
+<%function truncate(input) { %>
+    <% if (input.length > 1000){ %>
+       <% return input.substring(0,1000) + '...'; %>
+    <%} else{ %>
+       <% return input; %>
+    <% } %> 
+ <% } %>

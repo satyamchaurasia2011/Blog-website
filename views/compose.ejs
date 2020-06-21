@@ -1,0 +1,37 @@
+<%- include("partials/header") %> 
+
+
+<div class="contact">
+    <h1>Post a blog...</h1>
+    <p>Just put a title name in Title box and write about it in a content box. Then
+        add a image relates to that topic or title and at the end post it.
+    </p>
+</div>
+<section class="form-1">
+  <div class="form-2">
+   <div class="modal-body">
+    <form action="/compose" method="post">
+     <div class="form-group">
+            <label for="title">Title</label>
+            <br>
+            <input type="text" name="title" id="" class="form-control" required>
+            <br>
+              <label for="content">Content</label>
+              <br>
+              <textarea class="form-control" cols="150"rows="6" id="comment" name="blogData"></textarea>
+              <br>
+              <label for="image">Image</label>
+               <input type="text" class="form-control" name="image" placeholder="Enter image link">
+               <br>
+            <br>
+          <button class="btn btn-primary" type="submit">Post</button>
+      </div>
+      
+    </form>
+   </div>
+  </div>
+</section>
+
+
+
+<%- include("partials/footer") %> 
