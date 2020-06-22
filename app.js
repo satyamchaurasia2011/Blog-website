@@ -61,7 +61,7 @@ app.get("/:postId", function(req, res){
          } else {
              res.render("post", {heading: post.title, paragraph: post.content, image: post.image});
          }
-     })
+     });
      
 });
 
@@ -114,9 +114,12 @@ app.post("/compose", function(req, res){
 }); 
 
 
-
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
 }
-app.listen(port);
+
+app.listen(port, function() {
+  console.log("Server started on port 3000");
+});
+
