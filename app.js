@@ -7,9 +7,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect('mongodb://localhost:27017/blogsiteDB', {useNewUrlParser: true, useUnifiedTopology: true});
-
-
+mongoose.connect('mongodb+srv://admin-satyam:satyam123@cluster0-obeo5.mongodb.net/blogsiteDB', {useNewUrlParser: true, useUnifiedTopology: true});
 const contactSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -30,14 +28,10 @@ const Contact = mongoose.model("Contact", contactSchema);
 const Subscriber = mongoose.model("Subscriber", subscriberSchema);
 const Post = mongoose.model("Post", postSchema);
 
-let date = new Date().toLocaleDateString() ;
-let time =  new Date().toLocaleTimeString('en-US', {hour: "numeric",minute: "numeric"});
-
-let today = date + "  " + time;
 /////////////Get Requests/////////////
 app.get("/", function(req, res) {
     Post.find(function(err, blogs){
-        res.render("home", {today: today, blogs: blogs});
+        res.render("home", {blogs: blogs});
     });
 });
  
@@ -53,7 +47,7 @@ app.get("/compose", function(req, res){
     res.render("compose");
 });
 
-app.get("/:postId", function(req, res){
+app.get("/posts/:postId", function(req, res){
      const requestId = req.params.postId;
      Post.findOne({_id: requestId}, function(err, post){
          if(err){

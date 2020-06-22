@@ -8,7 +8,7 @@
         <h3><%= blog.title %> </h3>
         <p><%= truncate(blog.content) %>
            <% if(truncate(blog.content).length > 1000){ %> 
-            <a href="/<%= blog._id %>">Read more</a>
+            <a href="/posts/<%= blog._id %>">Read more</a>
             <% } %>
         </p> 
             <img src=<%= blog.image %> class="rounded mx-auto d-block " alt="img">
