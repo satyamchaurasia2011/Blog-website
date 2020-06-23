@@ -4,16 +4,18 @@
 <h1>Contact Us</h1>
 <p>We’re here to help and answer any question you might have. We look forward to hearing from you. </p>
 </div>
-<section class="form-1">
-<div class="form-2">
+
+<section class="form-1 container">
+    
+<div class="form-2 container">
 <form action="/contact"  class="contact100-form validate-form" method="post">
-    <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
+    <div class="wrap-input100 rs1-wrap-input100 validate-input " data-validate="Name is required">
         <span class="label-input100">Your Name</span>
         <input class="input100 input-contact" type="text" name="name" placeholder="Enter your name" required>
         <span class="focus-input100"></span>
     </div>
 
-    <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+    <div class="wrap-input100 rs1-wrap-input100 validate-input " data-validate = "Valid email is required: ex@abc.xyz">
         <span class="label-input100">Email</span>
         <input class="input100 input-contact" type="email" name="email" placeholder="Enter your email address" required>
         <span class="focus-input100"></span>
@@ -37,4 +39,5 @@
 </form>
 </div>
 </section>
+
 <%- include("partials/footer1") %> 
