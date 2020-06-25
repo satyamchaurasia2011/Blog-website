@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-let blogs = [];
+
+let blogPosts = [];
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,15 +25,26 @@ const postSchema = new mongoose.Schema({
     image: String,
     day: String
 });
+const adminSchema = new mongoose.Schema({
+    password: String
+});
 
 const Contact = mongoose.model("Contact", contactSchema);
 const Subscriber = mongoose.model("Subscriber", subscriberSchema);
 const Post = mongoose.model("Post", postSchema);
+const Encrypt = mongoose.model("Encrypt", adminSchema);
+
+
+const newAdmin = new Encrypt({
+    password: process.env.SECRET
+});
+// newAdmin.save();
+
 
 /////////////Get Requests/////////////
 app.get("/", function(req, res) {
-    Post.find(function(err, blogs){
-        res.render("home", {blogs: blogs});
+    Post.find(function(err, blogPosts){
+        res.render("home", {blogs: blogPosts});
     });
 });
  
@@ -44,7 +57,7 @@ app.get("/contact", function(req, res){
 });
 
 app.get("/compose", function(req, res){
-    res.render("compose");
+    res.render("password");
 });
 
 app.get("/posts/:postId", function(req, res){
@@ -74,7 +87,20 @@ app.post("/", function(req, res){
         }
     });
 });
+ 
 
+app.post("/password", function(req, res){
+    const secret = req.body.password;
+    Encrypt.find(function(err, adminUser){
+        if(adminUser[0]){
+            if(adminUser[0].password === secret){
+                res.render("compose");
+            } else {
+                res.send("<h1>Error</h1>");
+            }
+        }
+    });
+});
 
 app.post("/contact", function(req, res){
     const newContact = new Contact({
@@ -92,6 +118,7 @@ app.post("/contact", function(req, res){
 });
 
 app.post("/compose", function(req, res){
+   
     const newPost = new Post({
         title: req.body.title,
         content: req.body.blogData,
