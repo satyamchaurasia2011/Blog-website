@@ -6,14 +6,16 @@
     <div class="post">
         <p class="time"><%= blog.day %> </p>
         <h3><a class="post-link" href="/posts/<%= blog._id %>"><%= blog.title %></a> </h3>
+        
         <%if(blog.content){ %>
-        <p><%= truncate(blog.content); %>
+        <p class="wrap-content"><%= truncate(blog.content); %>
            <% if(truncate(blog.content).length > 1000){ %> 
             <a href="/posts/<%= blog._id %>">Read more</a>
             <% } %>
         <%   } %>
         </p> 
-            <img src=<%= blog.image %> class="rounded mx-auto d-block img-fluid" alt="img">
+            <img src=<%= blog.image %> class="rounded mx-auto d-block img-fluid blog-img" alt="img">
+    
     </div>
 <% }); %> 
 </div>

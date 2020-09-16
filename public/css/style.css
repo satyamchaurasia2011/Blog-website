@@ -268,11 +268,17 @@ p{
   .post{
     margin-top: 30px;
     margin-bottom: 20px;
+    /* margin-right: 400px; */
   }
   .time{
       margin-bottom: 0px;;
   }
   .blog-img{
-       height: 200px;
        width: 400px;
-  }
+      
+       /* position: relative;
+       left: 400px;
+    top: 0px; */
+}
+  
+ 
